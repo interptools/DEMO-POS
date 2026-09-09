@@ -13,11 +13,13 @@ Once Pages is enabled:
 | Cloud, daylight theme | `/DEMO-POS/cloud-light/` | `Arroyo_Deployer_v7_1_1` | Brew & Bite Café |
 | Cloud, midnight theme | `/DEMO-POS/cloud-dark/` | `Arroyo_Deployer_v6_1_2` | Kanto Grill & Rice |
 | Offline | `/DEMO-POS/offline/` | `Arroyo_POS_Builder_Application_Only_V6_3` | Sweet Crumb Bakeshop |
+| Offline, BIR receipts | `/DEMO-POS/minimart/` | `MyStore_POS_Builder_v31` | Bayanihan Mini Mart |
 
 - https://interptools.github.io/DEMO-POS/
 - https://interptools.github.io/DEMO-POS/cloud-light/
 - https://interptools.github.io/DEMO-POS/cloud-dark/
 - https://interptools.github.io/DEMO-POS/offline/
+- https://interptools.github.io/DEMO-POS/minimart/
 
 ## Enabling Pages
 
@@ -31,9 +33,17 @@ Once Pages is enabled:
 
 | Demo | Sign in | Manager / admin password |
 |---|---|---|
-| `cloud-light` | pre-filled (`demo@brewandbite.test` / `demo1234`) | `1234` |
-| `cloud-dark` | pre-filled (`demo@kantogrill.test` / `demo1234`) | `1234` |
+| `cloud-light` | pre-filled (`demo@brewandbite.test` / `demo1234`) | `demo1234` |
+| `cloud-dark` | pre-filled (`demo@kantogrill.test` / `demo1234`) | `demo1234` |
 | `offline` | password `login123` | `admin123` |
+| `minimart` | Manager PIN `1234`, Cashier PIN `1111` | same PINs |
+
+In `minimart` the PINs are **hashed with a per-build salt** before they reach
+the page source, exactly as in a paid build — `1234` never appears in the HTML.
+
+Both cloud demos use **one password throughout** — `demo1234` gets you in and
+also unlocks the manager screens, so there is nothing for a customer to
+mix up.
 
 Each cloud demo also accepts **Create account** — sign-up works locally, so a
 customer can make their own trial login if they want to see that flow.
@@ -77,8 +87,29 @@ product loading, sale sync, voiding, expenses and reports all behave normally,
 but there is no server, no bill and no shared data. The seeded database holds
 the sample business, its catalogue and six days of takings.
 
-Also removed: the `manifest.json` link and the service worker registration, so
-a demo can never serve a stale cached copy after you redeploy.
+Also removed:
+
+- The **installation password gate**. In the paid build this screen tells the
+  operator to phone you for `CREATOR_PASS`; in a trial it is a dead end, so the
+  demos set `S.installed = true` and go straight to sign-in.
+- The `manifest.json` link and the service worker registration, so a demo can
+  never serve a stale cached copy after you redeploy.
+
+### The MyStore demo (`minimart/`)
+
+That builder rewrites its template across roughly 6,500 lines of chained string
+surgery — namespaced storage keys, hashed PINs, an injected Waste/Expenses tab,
+CSS fixes, a bootstrap seeder. Reimplementing that in `build.py` would drift out
+of sync with every new builder version, so instead the builder's own
+`generateApp()` runs headlessly in Node under a DOM shim (`mystore_run.cjs`),
+with the form readers overridden to return `mystore_cfg.json`. The demo is
+therefore byte-identical to what a paying client would receive, minus the
+service worker, the manifest link and plus the trial layer.
+
+To change the sample store, edit `mystore_cfg.json` and rebuild. Nothing about
+that demo is hand-edited.
+
+### The offline demo (`offline/`)
 
 The offline demo needed no backend work. The previous client's name was
 replaced throughout with the fictional Sweet Crumb Bakeshop, including the
@@ -90,9 +121,9 @@ replaced throughout with the fictional Sweet Crumb Bakeshop, including the
 python3 build/build.py
 ```
 
-Reads the three builder HTML files from `/mnt/user-data/extract` (adjust `SRC`)
-and regenerates `cloud-light/`, `cloud-dark/`, `offline/` and `index.html`.
-Nothing in those folders is edited by hand.
+Reads the builder HTML files from `SRC` (and `MYSTORE_SRC`) and regenerates
+`cloud-light/`, `cloud-dark/`, `offline/`, `minimart/` and `index.html`.
+Nothing in those folders is edited by hand. Node is required for `minimart`.
 
 The script never hard-codes a secret: it discovers the real constants in the
 builder source with a regex, swaps them, and then asserts they are absent from

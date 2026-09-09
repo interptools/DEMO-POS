@@ -1,0 +1,41 @@
+{
+  "name": "Bayanihan Mini Mart",
+  "addr": "Blk 7 Lot 12, Barangay Malinis, Cainta, Rizal",
+  "tin": "000-000-000-00000",
+  "phrase": "This serves as your Official Receipt",
+  "emoji": "\ud83c\udfea",
+  "themeColor": "#0f7b52",
+  "vatReg": "vat",
+  "serial": "DEMO-0000-0001",
+  "minNo": "00000000000000000",
+  "permit": "DEMO-PERMIT-0000",
+  "till": "TILL-01",
+  "retDays": 7,
+  "bizType": "retail",
+  "ghUser": "interptools",
+  "ghRepo": "DEMO-POS",
+  "users": [
+    { "id": 1, "name": "Manager", "role": "Manager", "pin": "1234", "color": "#8e44ad" },
+    { "id": 2, "name": "Cashier 1", "role": "Cashier", "pin": "1111", "color": "#1a5c8a" }
+  ],
+  "products": [
+    { "id": 1,  "bc": "4800016641503", "code": "4800016641503", "name": "Lucky Me Pancit Canton", "price": 17,  "cost": 13,   "stock": 96, "barcode": "4800016641503", "cat": "Noodles",   "unit": "pcs", "rl": 12, "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 2,  "bc": "4800361410007", "code": "4800361410007", "name": "Nissin Cup Noodles",     "price": 32,  "cost": 25,   "stock": 48, "barcode": "4800361410007", "cat": "Noodles",   "unit": "pcs", "rl": 8,  "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 3,  "bc": "4800024561503", "code": "4800024561503", "name": "Kopiko Brown 3-in-1",    "price": 8,   "cost": 6,    "stock": 200,"barcode": "4800024561503", "cat": "Beverages", "unit": "pcs", "rl": 24, "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 4,  "bc": "4800088123457", "code": "4800088123457", "name": "Bear Brand 320g",        "price": 98,  "cost": 84,   "stock": 24, "barcode": "4800088123457", "cat": "Beverages", "unit": "pcs", "rl": 6,  "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 5,  "bc": "4801234500019", "code": "4801234500019", "name": "Coke Sakto 200ml",       "price": 18,  "cost": 14,   "stock": 72, "barcode": "4801234500019", "cat": "Beverages", "unit": "pcs", "rl": 12, "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 6,  "bc": "4801234500026", "code": "4801234500026", "name": "Bottled Water 500ml",    "price": 15,  "cost": 9,    "stock": 60, "barcode": "4801234500026", "cat": "Beverages", "unit": "pcs", "rl": 12, "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 7,  "bc": "RICE-5KG",      "code": "RICE-5KG",      "name": "Sinandomeng Rice 5kg",   "price": 320, "cost": 285,  "stock": 18, "barcode": "RICE-5KG",      "cat": "Rice",      "unit": "sack","rl": 4,  "sup": "", "vx": true,  "exp": "", "active": true },
+    { "id": 8,  "bc": "RICE-1KG",      "code": "RICE-1KG",      "name": "Sinandomeng Rice 1kg",   "price": 68,  "cost": 58,   "stock": 40, "barcode": "RICE-1KG",      "cat": "Rice",      "unit": "kg",  "rl": 10, "sup": "", "vx": true,  "exp": "", "active": true },
+    { "id": 9,  "bc": "EGG-TRAY",      "code": "EGG-TRAY",      "name": "Eggs (tray of 30)",      "price": 240, "cost": 210,  "stock": 12, "barcode": "EGG-TRAY",      "cat": "Fresh",     "unit": "tray","rl": 3,  "sup": "", "vx": true,  "exp": "", "active": true },
+    { "id": 10, "bc": "4800092345678", "code": "4800092345678", "name": "Argentina Corned Beef",  "price": 42,  "cost": 34,   "stock": 36, "barcode": "4800092345678", "cat": "Canned",    "unit": "pcs", "rl": 8,  "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 11, "bc": "4800092345685", "code": "4800092345685", "name": "555 Sardines",           "price": 26,  "cost": 20,   "stock": 54, "barcode": "4800092345685", "cat": "Canned",    "unit": "pcs", "rl": 12, "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 12, "bc": "4800101234567", "code": "4800101234567", "name": "Chippy 110g",            "price": 28,  "cost": 22,   "stock": 40, "barcode": "4800101234567", "cat": "Snacks",    "unit": "pcs", "rl": 10, "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 13, "bc": "4800101234574", "code": "4800101234574", "name": "Skyflakes 10s",          "price": 45,  "cost": 36,   "stock": 30, "barcode": "4800101234574", "cat": "Snacks",    "unit": "pack","rl": 8,  "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 14, "bc": "4800111223344", "code": "4800111223344", "name": "Tide Bar 380g",          "price": 38,  "cost": 30,   "stock": 45, "barcode": "4800111223344", "cat": "Household", "unit": "pcs", "rl": 10, "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 15, "bc": "4800111223351", "code": "4800111223351", "name": "Joy Dishwashing 190ml",  "price": 34,  "cost": 27,   "stock": 33, "barcode": "4800111223351", "cat": "Household", "unit": "pcs", "rl": 8,  "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 16, "bc": "4800111223368", "code": "4800111223368", "name": "Safeguard Soap 130g",    "price": 42,  "cost": 34,   "stock": 28, "barcode": "4800111223368", "cat": "Household", "unit": "pcs", "rl": 8,  "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 17, "bc": "LOAD-50",       "code": "LOAD-50",       "name": "E-Load \u20b150",         "price": 53,  "cost": 50,   "stock": 999,"barcode": "LOAD-50",       "cat": "Services",  "unit": "pcs", "rl": 0,  "sup": "", "vx": false, "exp": "", "active": true },
+    { "id": 18, "bc": "LOAD-100",      "code": "LOAD-100",      "name": "E-Load \u20b1100",        "price": 105, "cost": 100,  "stock": 999,"barcode": "LOAD-100",      "cat": "Services",  "unit": "pcs", "rl": 0,  "sup": "", "vx": false, "exp": "", "active": true }
+  ]
+}
