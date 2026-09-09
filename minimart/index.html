@@ -9,8 +9,8 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
-<link rel="icon" type="image/png" href="assets/icons/icon-192.png" />
+
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif}
 :root{
@@ -337,6 +337,8 @@ td.r{text-align:right}
   var STORE = 'Bayanihan Mini Mart';
   var STATE_KEY = 'bayanihan_mini_mart_history';
   var HOME = 'https://interptools.github.io/DEMO-POS/';
+  var KEY_RE = new RegExp('^bayanihan_mini_mart_');
+  var BOTTOM = '51';
   var SELLER = {
     name: 'Reymar Arroyo',
     phone: '+63 906 396 4052',
@@ -348,7 +350,7 @@ td.r{text-align:right}
   if (/[?&]reset=1/.test(location.search)) {
     try {
       Object.keys(localStorage).forEach(function (k) {
-        if (/^arroyo/.test(k)) localStorage.removeItem(k);
+        if (KEY_RE.test(k)) localStorage.removeItem(k);
       });
     } catch (e) {}
     location.replace(location.pathname);
@@ -377,7 +379,7 @@ td.r{text-align:right}
   var css = document.createElement('style');
   css.textContent = [
     '#arroyo-trial,#arroyo-lock{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;}',
-    '#arroyo-trial{position:fixed;left:12px;bottom:14px;z-index:2147483000;display:flex;align-items:center;gap:10px;',
+    '#arroyo-trial{position:fixed;left:12px;bottom:' + BOTTOM + 'px;z-index:2147483000;display:flex;align-items:center;gap:10px;',
     'background:#14170f;color:#f4f3ea;border:1px solid rgba(244,243,234,.22);border-radius:999px;',
     'padding:7px 8px 7px 14px;box-shadow:0 6px 22px rgba(0,0,0,.34);max-width:calc(100vw - 24px);}',
     '#arroyo-trial.mini{padding:0;width:38px;height:38px;justify-content:center;}',
@@ -979,11 +981,11 @@ td.r{text-align:right}
 
 // == BOOTSTRAP: force-seed on fresh deploy ==
 (function(){
-  var stamp="1788930002657",sk="bayanihan_mini_mart_build_stamp";
+  var stamp="1788932081312",sk="bayanihan_mini_mart_build_stamp";
   if(localStorage.getItem(sk)!==stamp){
     localStorage.removeItem("bayanihan_mini_mart_users");
     localStorage.removeItem("bayanihan_mini_mart_store");
-    localStorage.setItem("bayanihan_mini_mart_pin_reminder","1");
+    localStorage.setItem("bayanihan_mini_mart_pin_reminder","0"); /* demo: no PIN nag */
     localStorage.setItem(sk,stamp);
   }
 })();
@@ -1000,7 +1002,7 @@ const LS = {
 };
 
 let USERS = (()=>{
-  const u = LS.get('bayanihan_mini_mart_users',[{"id":1,"name":"Manager","role":"Manager","pin":"h2$1i1zppwl19gzt1wx1gjx","color":"#8e44ad","mustChange":true},{"id":2,"name":"Cashier 1","role":"Cashier","pin":"h2$855dp9xxac5o103lxfw","color":"#1a5c8a","mustChange":true}]);
+  const u = LS.get('bayanihan_mini_mart_users',[{"id":1,"name":"Manager","role":"Manager","pin":"h2$14o82cm193nc0l1h2fjwn","color":"#8e44ad","mustChange":true},{"id":2,"name":"Cashier 1","role":"Cashier","pin":"h2$m3tzd2i62wz7lhx26i","color":"#1a5c8a","mustChange":true}]);
   return u;
 })();
 
@@ -1226,7 +1228,7 @@ function cardLabel(c){
    stops PINs sitting in localStorage as readable plain text.
    ════════════════════════════════════════ */
 const PIN_SALT='mystore.pos.v2';
-const PIN_SALT2='8e8ab9264177c80265044421253626b0';
+const PIN_SALT2='333f4b50ad9107db0581fa191c247dc2';
 function hashPin(pin){
   let h1=0x811c9dc5, h2=0x1000193;
   const str=PIN_SALT+':'+pin+':'+PIN_SALT;
