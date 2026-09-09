@@ -3158,6 +3158,8 @@ body[data-panel="sub"] #nav-back {
   var STORE = 'Sweet Crumb Bakeshop';
   var STATE_KEY = 'arroyodemo_sales';
   var HOME = 'https://interptools.github.io/DEMO-POS/';
+  var KEY_RE = new RegExp('^arroyodemo_');
+  var BOTTOM = '64';
   var SELLER = {
     name: 'Reymar Arroyo',
     phone: '+63 906 396 4052',
@@ -3169,7 +3171,7 @@ body[data-panel="sub"] #nav-back {
   if (/[?&]reset=1/.test(location.search)) {
     try {
       Object.keys(localStorage).forEach(function (k) {
-        if (/^arroyo/.test(k)) localStorage.removeItem(k);
+        if (KEY_RE.test(k)) localStorage.removeItem(k);
       });
     } catch (e) {}
     location.replace(location.pathname);
@@ -3198,7 +3200,7 @@ body[data-panel="sub"] #nav-back {
   var css = document.createElement('style');
   css.textContent = [
     '#arroyo-trial,#arroyo-lock{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;}',
-    '#arroyo-trial{position:fixed;left:12px;bottom:14px;z-index:2147483000;display:flex;align-items:center;gap:10px;',
+    '#arroyo-trial{position:fixed;left:12px;bottom:' + BOTTOM + 'px;z-index:2147483000;display:flex;align-items:center;gap:10px;',
     'background:#14170f;color:#f4f3ea;border:1px solid rgba(244,243,234,.22);border-radius:999px;',
     'padding:7px 8px 7px 14px;box-shadow:0 6px 22px rgba(0,0,0,.34);max-width:calc(100vw - 24px);}',
     '#arroyo-trial.mini{padding:0;width:38px;height:38px;justify-content:center;}',
